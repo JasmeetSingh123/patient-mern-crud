@@ -14,11 +14,9 @@ app.use('/patients', patientsRouter);
 
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
-connection.once('open', () => {
-    app.listen(port, () => {
-        console.log(`Server is running on port: ${port}`);
-      });
-  console.log("MongoDB database connection established successfully");
+mongoose.connect(`${process.env.DB_CONNECT}`);
+app.listen(port, function () {
+    console.log("server is listening on port ", port)
 })
 
 
